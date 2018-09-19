@@ -16,7 +16,7 @@ namespace MVCDemo.Controllers
                 "Veerachimangalam",
                 "Kavundampalayam",
                 "Pallipalayam",
-                "Thokkavadi"
+                "Thokkavdi"
             };
             return View();
         }
