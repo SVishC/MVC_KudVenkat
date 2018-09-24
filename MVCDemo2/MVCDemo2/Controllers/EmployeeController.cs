@@ -53,12 +53,13 @@ namespace MVCDemo2.Controllers
 
         [HttpPost]
         [ActionName("Edit")]
-        public ActionResult Edit_Post(int id)
+        public ActionResult Edit_Post([Bind(Include = "Id,Gender,City,DateOfBirth")]Employee employee)
         {
             
             EmployeeBusinessLayer empBusinessLayer = new EmployeeBusinessLayer();
-            Employee employee = empBusinessLayer.Employees.Single(e => e.Id == id);
-            UpdateModel(employee, new string[] { "Id", "Gender", "City", "DateOfBirth" });
+            employee.Name = empBusinessLayer.Employees.Single(emp => emp.Id == employee.Id).Name;
+            //Employee employee = empBusinessLayer.Employees.Single(e => e.Id == id);
+           // UpdateModel(employee, new string[] { "Id", "Gender", "City", "DateOfBirth" });
             if (ModelState.IsValid)
             {
                 empBusinessLayer.SaveEmployee(employee);
