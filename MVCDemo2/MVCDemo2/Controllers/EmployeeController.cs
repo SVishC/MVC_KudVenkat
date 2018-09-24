@@ -41,5 +41,29 @@ namespace MVCDemo2.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            EmployeeBusinessLayer empBusinessLayer = new EmployeeBusinessLayer();
+            Employee employee = empBusinessLayer.Employees.Single(emp => emp.Id == id);
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Employee employee)
+        {
+            EmployeeBusinessLayer empBusinessLayer = new EmployeeBusinessLayer();
+            if (ModelState.IsValid)
+            {
+                empBusinessLayer.SaveEmployee(employee);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }
