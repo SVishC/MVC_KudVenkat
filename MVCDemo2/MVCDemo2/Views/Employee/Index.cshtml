@@ -11,7 +11,7 @@
         @Html.ActionLink("Create New", "Create")
     </p>
     <table class="table" border="1">
-        <tr>
+        <tr>    
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -31,6 +31,8 @@
 
         @foreach (var item in Model)
         {
+            using (@Html.BeginForm("Delete", "Employee", new { id = item.Id }))
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
@@ -46,10 +48,10 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <input type="submit" value="Delete" onclick="return confirm('Do you want to delete Employee with Id:@item.Id')"/>
                 </td>
             </tr>
+            }
         }
 
     </table>

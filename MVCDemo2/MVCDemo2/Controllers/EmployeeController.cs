@@ -69,5 +69,13 @@ namespace MVCDemo2.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            EmployeeBusinessLayer empBusinessLayer = new EmployeeBusinessLayer();
+            empBusinessLayer.DeleteEmployee(id);
+            return RedirectToAction("Index");
+        }
     }
 }
