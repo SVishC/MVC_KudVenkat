@@ -52,9 +52,13 @@ namespace MVCDemo2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Employee employee)
+        [ActionName("Edit")]
+        public ActionResult Edit_Post(int id)
         {
+            
             EmployeeBusinessLayer empBusinessLayer = new EmployeeBusinessLayer();
+            Employee employee = empBusinessLayer.Employees.Single(e => e.Id == id);
+            UpdateModel(employee, new string[] { "Id", "Gender", "City", "DateOfBirth" });
             if (ModelState.IsValid)
             {
                 empBusinessLayer.SaveEmployee(employee);
